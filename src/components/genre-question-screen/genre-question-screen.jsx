@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function GenreQuestionScreen () {
+function GenreQuestionScreen() {
   return (
     <section className="game game--genre">
       <header className="game__header">
@@ -67,3 +67,5 @@ function GenreQuestionScreen () {
     </section>
   );
 }
+
+export default GenreQuestionScreen;

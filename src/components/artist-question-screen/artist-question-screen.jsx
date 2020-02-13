@@ -55,3 +55,5 @@ function ArtistQuestionScreen() {
     </section>
   );
 }
+
+export default ArtistQuestionScreen;

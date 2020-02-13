@@ -1,22 +1,46 @@
-import React from "react";
-import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import ArtistQuestionScreen
+  from "../artist-question-screen/artist-question-screen";
+import GenreQuestionScreen
+  from "../genre-question-screen/genre-question-screen";
 
-const welcomeButtonHandler = () => {};
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-const App = (props) => {
-  const {errorsCount} = props;
+  render() {
+    const {questions} = this.props;
 
-  return (
-    <WelcomeScreen
-      errorsCount={errorsCount}
-      onWelcomeButtonClick = {welcomeButtonHandler}
-    />
-  );
-};
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderGameScreen()}
+          </Route>
+          <Route exact path="/artist">
+            <ArtistQuestionScreen
+              question={questions[1]}
+              onAnswer={() => {}}
+            />
+          </Route>
+          <Route exact path="/genre">
+            <GenreQuestionScreen
+              question={questions[0]}
+              onAnswer={() => {}}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 App.propTypes = {
   errorsCount: PropTypes.number.isRequired,
+  questions: PropTypes.array.isRequired,
 };
 
 export default App;
