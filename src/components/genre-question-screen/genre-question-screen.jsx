@@ -55,7 +55,7 @@ class GenreQuestionScreen extends PureComponent {
                   <div className="game__answer">
                     <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${i}`}
                       id={`answer-${i}`}
-                      defaultChecked ={userAnswers[i]}
+                      checked={userAnswers[i]}
                       onChange={(evt) => {
                         const value = evt.target.checked;
 

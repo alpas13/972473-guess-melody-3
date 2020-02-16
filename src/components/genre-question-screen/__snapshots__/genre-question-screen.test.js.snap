@@ -87,8 +87,8 @@ exports[`Render GenreQuestionScreen correctly 1`] = `
           className="game__answer"
         >
           <input
+            checked={false}
             className="game__input visually-hidden"
-            defaultChecked={false}
             id="answer-0"
             name="answer"
             onChange={[Function]}
@@ -121,8 +121,8 @@ exports[`Render GenreQuestionScreen correctly 1`] = `
           className="game__answer"
         >
           <input
+            checked={false}
             className="game__input visually-hidden"
-            defaultChecked={false}
             id="answer-1"
             name="answer"
             onChange={[Function]}
@@ -155,8 +155,8 @@ exports[`Render GenreQuestionScreen correctly 1`] = `
           className="game__answer"
         >
           <input
+            checked={false}
             className="game__input visually-hidden"
-            defaultChecked={false}
             id="answer-2"
             name="answer"
             onChange={[Function]}
@@ -189,8 +189,8 @@ exports[`Render GenreQuestionScreen correctly 1`] = `
           className="game__answer"
         >
           <input
+            checked={false}
             className="game__input visually-hidden"
-            defaultChecked={false}
             id="answer-3"
             name="answer"
             onChange={[Function]}
