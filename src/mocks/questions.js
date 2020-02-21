@@ -12,26 +12,26 @@ export default [
       genre: `blues`,
     }, {
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `jazz`,
+      genre: `pop`,
     }, {
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `rock`,
+      genre: `rap`,
     }],
   }, {
     type: `artist`,
     song: {
-      artist: `Jim Beam`,
+      artist: `Kurt Cobain`,
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
     },
     answers: [{
       picture: `${AVATAR_URL}/${Math.random()}`,
-      artist: `John Jameson`,
+      artist: `Kurt Cobain`,
     }, {
       picture: `${AVATAR_URL}/${Math.random()}`,
-      artist: `Jack Daniels`,
+      artist: `Adele`,
     }, {
       picture: `${AVATAR_URL}/${Math.random()}`,
-      artist: `Jim Beam`,
+      artist: `Madonna`,
     }],
   }
 ];

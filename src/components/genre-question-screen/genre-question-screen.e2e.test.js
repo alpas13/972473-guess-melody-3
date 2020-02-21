@@ -37,6 +37,7 @@ test(`When user answers genre question form is not sent`, () => {
   const wrapper = shallow(<GenreQuestionScreen
     onAnswer={onAnswer}
     question={question}
+    renderPlayer={() => {}}
   />);
 
   const genreQuestion = wrapper.find(`form`);
@@ -57,6 +58,7 @@ test(`User answer passed to callback is consistent with "userAnswer" prop`, () =
   const wrapper = shallow(<GenreQuestionScreen
     onAnswer={onAnswer}
     question={question}
+    renderPlayer={() => {}}
   />);
 
   const genreQuestion = wrapper.find(`form`);

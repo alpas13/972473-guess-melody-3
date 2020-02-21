@@ -1,6 +1,6 @@
-import React from "react";
-import GenreQuestionScreen from "./genre-question-screen";
-import renderer from "react-test-renderer";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import GenreQuestionScreen from './genre-question-screen.jsx';
 
 const question = {
   type: `genre`,
@@ -20,11 +20,14 @@ const question = {
   }],
 };
 
-test(`Render GenreQuestionScreen correctly`, () => {
-  const tree = renderer
-      .create(<GenreQuestionScreen
+test(`GenreQuestionScreen is rendered correctly`, () => {
+  const tree = renderer.create(
+      <GenreQuestionScreen
+        question={question}
         onAnswer={() => {}}
-        question={question}/>
-      ).toJSON();
+        renderPlayer={() => {}}
+      />
+  ).toJSON();
+
   expect(tree).toMatchSnapshot();
 });
