@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render GenreQuestionScreen correctly 1`] = `
+exports[`GenreQuestionScreen is rendered correctly 1`] = `
 <section
   className="game__screen"
 >
@@ -18,17 +18,6 @@ exports[`Render GenreQuestionScreen correctly 1`] = `
     <div
       className="track"
     >
-      <button
-        className="track__button track__button--pause"
-        disabled={true}
-        onClick={[Function]}
-        type="button"
-      />
-      <div
-        className="track__status"
-      >
-        <audio />
-      </div>
       <div
         className="game__answer"
       >
@@ -52,17 +41,6 @@ exports[`Render GenreQuestionScreen correctly 1`] = `
     <div
       className="track"
     >
-      <button
-        className="track__button track__button--pause"
-        disabled={true}
-        onClick={[Function]}
-        type="button"
-      />
-      <div
-        className="track__status"
-      >
-        <audio />
-      </div>
       <div
         className="game__answer"
       >
@@ -86,17 +64,6 @@ exports[`Render GenreQuestionScreen correctly 1`] = `
     <div
       className="track"
     >
-      <button
-        className="track__button track__button--pause"
-        disabled={true}
-        onClick={[Function]}
-        type="button"
-      />
-      <div
-        className="track__status"
-      >
-        <audio />
-      </div>
       <div
         className="game__answer"
       >
@@ -120,17 +87,6 @@ exports[`Render GenreQuestionScreen correctly 1`] = `
     <div
       className="track"
     >
-      <button
-        className="track__button track__button--pause"
-        disabled={true}
-        onClick={[Function]}
-        type="button"
-      />
-      <div
-        className="track__status"
-      >
-        <audio />
-      </div>
       <div
         className="game__answer"
       >

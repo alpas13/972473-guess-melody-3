@@ -25,6 +25,7 @@ test(`Render ArtistQuestionScreen correctly`, () => {
       .create(<ArtistQuestionScreen
         question={question}
         onAnswer={() => {}}
+        renderPlayer={() => {}}
       />).toJSON();
   expect(tree).toMatchSnapshot();
 });
