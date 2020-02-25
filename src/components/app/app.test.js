@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import {App} from "./app.jsx";
 
 const mocks = [
   {
@@ -38,13 +38,58 @@ const mocks = [
   }
 ];
 
-test(`Render App`, () => {
-  const tree = renderer
-      .create(<App
-        errorsCount={3}
-        questions={mocks}
-      />)
-      .toJSON();
+describe(`Render App`, () => {
+  test(`Render WelcomeScreen`, () => {
+    const tree = renderer
+        .create(<App
+          errorsCount={3}
+          questions={mocks}
+          onWelcomeButtonClick={()=>{}}
+          onUserAnswer={()=>{}}
+          step={-1}
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
+        .toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
+
+  test(`Render GenreQuestionScreen`, () => {
+    const tree = renderer
+        .create(<App
+          errorsCount={3}
+          questions={mocks}
+          onWelcomeButtonClick={()=>{}}
+          onUserAnswer={()=>{}}
+          step={0}
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
+        .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  test(`Render ArtistQuestionScreen`, () => {
+    const tree = renderer
+          .create(<App
+            errorsCount={3}
+            questions={mocks}
+            onWelcomeButtonClick={()=>{}}
+            onUserAnswer={()=>{}}
+            step={1}
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
+          .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });
