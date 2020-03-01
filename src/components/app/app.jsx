@@ -10,6 +10,8 @@ import ArtistQuestionScreen
   from "../artist-question-screen/artist-question-screen.jsx";
 import GenreQuestionScreen
   from "../genre-question-screen/genre-question-screen.jsx";
+import GameOverScreen from "../game-over-screen/game-over-screen.jsx";
+import WinScreen from "../win-screen/win-screen.jsx";
 import withActivePlayer from "../../hocs/with-active-player/with-active-player.jsx";
 import withUserAnswer from "../../hocs/with-user-answer/with-user-answer.jsx";
 
@@ -23,16 +25,35 @@ class App extends PureComponent {
     const {
       maxMistakes,
       questions,
+      mistakes,
       step,
       onWelcomeButtonClick,
       onUserAnswer} = this.props;
     const question = questions[step];
 
-    if (step === -1 || step >= questions.length) {
+    if (step === -1) {
       return (
         <WelcomeScreen
           errorsCount={maxMistakes}
           onWelcomeButtonClick = {onWelcomeButtonClick}
+        />
+      );
+    }
+
+    if (mistakes >= maxMistakes) {
+      return (
+        <GameOverScreen
+          onReplayButtonClick={() => {}}
+        />
+      );
+    }
+
+    if (step >= questions.length) {
+      return (
+        <WinScreen
+          questionsCount={questions.length}
+          mistakesCount={mistakes}
+          onReplayButtonClick={() => {}}
         />
       );
     }
@@ -91,6 +112,7 @@ class App extends PureComponent {
 
 App.propTypes = {
   maxMistakes: PropTypes.number.isRequired,
+  mistakes: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
   step: PropTypes.number.isRequired,
   onWelcomeButtonClick: PropTypes.func.isRequired,
@@ -101,6 +123,7 @@ const mapStateToProps = (state) => ({
   step: state.step,
   maxMistakes: state.maxMistakes,
   questions: state.questions,
+  mistakes: state.mistakes,
 });
 
 const mapDispatchToProps = (dispatch) => ({
