@@ -1,6 +1,6 @@
 import React from "react";
 import GenreQuestionScreen from "./genre-question-screen";
-import {configure, shallow} from "enzyme";
+import {configure, shallow, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 configure({adapter: new Adapter()});
@@ -57,7 +57,7 @@ test(`User answer passed to callback is consistent with "userAnswer" prop`, () =
   const {question} = mock;
   const userAnswer = [false, true, false, false];
 
-  const wrapper = shallow(<GenreQuestionScreen
+  const wrapper = mount(<GenreQuestionScreen
     onAnswer={onAnswer}
     onChange={()=>{}}
     question={question}

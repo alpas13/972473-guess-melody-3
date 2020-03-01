@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {GameType} from "../../const.js";
+import GameType from "../../const.js";
 
 const withUserAnswer = (Component) => {
   class WithUserAnswer extends PureComponent {
