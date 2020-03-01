@@ -11,9 +11,10 @@ import ArtistQuestionScreen
 import GenreQuestionScreen
   from "../genre-question-screen/genre-question-screen.jsx";
 import withActivePlayer from "../../hocs/with-active-player/with-active-player.jsx";
+import withUserAnswer from "../../hocs/with-user-answer/with-user-answer.jsx";
 
 const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
-const GenreQuestionScreenWrapped = withActivePlayer(GenreQuestionScreen);
+const GenreQuestionScreenWrapped = withActivePlayer(withUserAnswer(GenreQuestionScreen));
 
 
 class App extends PureComponent {
