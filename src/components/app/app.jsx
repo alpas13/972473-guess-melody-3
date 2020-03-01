@@ -10,10 +10,10 @@ import ArtistQuestionScreen
   from "../artist-question-screen/artist-question-screen.jsx";
 import GenreQuestionScreen
   from "../genre-question-screen/genre-question-screen.jsx";
-import withAudioPlayer from "../../hocs/with-audio-player/with-audio-player.js";
+import withActivePlayer from "../../hocs/with-active-player/with-active-player.jsx";
 
-const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
-const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
+const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
+const GenreQuestionScreenWrapped = withActivePlayer(GenreQuestionScreen);
 
 
 class App extends PureComponent {
