@@ -1,6 +1,6 @@
 import React from "react";
 import GenreQuestionScreen from "./genre-question-screen";
-import {configure, shallow} from "enzyme";
+import {configure, shallow, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 configure({adapter: new Adapter()});
@@ -36,8 +36,10 @@ test(`When user answers genre question form is not sent`, () => {
 
   const wrapper = shallow(<GenreQuestionScreen
     onAnswer={onAnswer}
+    onChange={()=>{}}
     question={question}
     renderPlayer={() => {}}
+    userAnswers={[false, false, false, false]}
   />);
 
   const genreQuestion = wrapper.find(`form`);
@@ -55,10 +57,12 @@ test(`User answer passed to callback is consistent with "userAnswer" prop`, () =
   const {question} = mock;
   const userAnswer = [false, true, false, false];
 
-  const wrapper = shallow(<GenreQuestionScreen
+  const wrapper = mount(<GenreQuestionScreen
     onAnswer={onAnswer}
+    onChange={()=>{}}
     question={question}
     renderPlayer={() => {}}
+    userAnswers={userAnswer}
   />);
 
   const genreQuestion = wrapper.find(`form`);
@@ -69,8 +73,7 @@ test(`User answer passed to callback is consistent with "userAnswer" prop`, () =
 
   expect(onAnswer).toHaveBeenCalledTimes(1);
 
-  expect(onAnswer.mock.calls[0][0]).toMatchObject(question);
-  expect(onAnswer.mock.calls[0][1]).toMatchObject(userAnswer);
+  expect(onAnswer.mock.calls[0][0]).toEqual(void 0);
 
   expect(wrapper.find(`input`).map((it) => it.prop(`checked`))).toEqual(userAnswer);
 });

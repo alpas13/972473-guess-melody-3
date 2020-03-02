@@ -25,6 +25,8 @@ test(`GenreQuestionScreen is rendered correctly`, () => {
       <GenreQuestionScreen
         question={question}
         onAnswer={() => {}}
+        onChange={() => {}}
+        userAnswers={[false, false, false, false]}
         renderPlayer={() => {}}
       />
   ).toJSON();

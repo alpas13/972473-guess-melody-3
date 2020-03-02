@@ -99,6 +99,47 @@ test(`Reducer should increment number of mistakes by a given value`, () => {
   });
 });
 
+test(`Reducer should return default`, () => {
+  expect(reducer({
+    step: 5,
+    mistakes: 1,
+  }, {
+    type: ActionType.RESET,
+    payload: null,
+  })).toEqual({
+    step: 0,
+    mistakes: 0,
+    maxMistakes: 3,
+    questions,
+  });
+
+  expect(reducer({
+    step: 0,
+    mistakes: 0,
+  }, {
+    type: ActionType.RESET,
+    payload: null,
+  })).toEqual({
+    step: 0,
+    mistakes: 0,
+    maxMistakes: 3,
+    questions,
+  });
+
+  expect(reducer({
+    step: -1,
+    mistakes: 0,
+  }, {
+    type: ActionType.RESET,
+    payload: null,
+  })).toEqual({
+    step: 0,
+    mistakes: 0,
+    maxMistakes: 3,
+    questions,
+  });
+});
+
 describe(`ActionCreator work correctly`, () => {
   test(`ActionCreator for incrementing step returns correct action`, () => {
     expect(ActionCreator.incrementStep()).toEqual({
@@ -221,5 +262,13 @@ describe(`ActionCreator work correctly`, () => {
       type: ActionType.INCREMENT_MISTAKES,
       payload: 1,
     });
+  });
+
+  test(`Action creator for reset game returns action with null payload`, () => {
+    expect(ActionCreator.resetGame())
+        .toEqual({
+          type: ActionType.RESET,
+          payload: null,
+        });
   });
 });
