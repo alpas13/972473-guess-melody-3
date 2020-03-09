@@ -1,4 +1,4 @@
-import {reducer, ActionType, ActionCreator} from "./reducer";
+import {game, ActionType, ActionCreator} from "./game";
 
 const AVATAR_URL = `https://api.adorable.io/avatars/128`;
 
@@ -39,7 +39,7 @@ const questions = [
 ];
 
 test(`Reducer without additional parameters should return initial state`, () => {
-  expect(reducer(void 0, {})).toEqual({
+  expect(game(void 0, {})).toEqual({
     mistakes: 0,
     step: -1,
     maxMistakes: 3,
@@ -48,7 +48,7 @@ test(`Reducer without additional parameters should return initial state`, () => 
 });
 
 test(`Reducer should increment current step by a given value`, () => {
-  expect(reducer({
+  expect(game({
     mistakes: 0,
     step: -1,
     questions
@@ -61,7 +61,7 @@ test(`Reducer should increment current step by a given value`, () => {
     questions
   });
 
-  expect(reducer({
+  expect(game({
     mistakes: 0,
     step: -1,
     questions
@@ -76,7 +76,7 @@ test(`Reducer should increment current step by a given value`, () => {
 });
 
 test(`Reducer should increment number of mistakes by a given value`, () => {
-  expect(reducer({
+  expect(game({
     mistakes: 0,
     step: -1
   }, {
@@ -87,7 +87,7 @@ test(`Reducer should increment number of mistakes by a given value`, () => {
     step: -1
   });
 
-  expect(reducer({
+  expect(game({
     mistakes: 0,
     step: -1
   }, {
@@ -100,7 +100,7 @@ test(`Reducer should increment number of mistakes by a given value`, () => {
 });
 
 test(`Reducer should return default`, () => {
-  expect(reducer({
+  expect(game({
     step: 5,
     mistakes: 1,
   }, {
@@ -113,7 +113,7 @@ test(`Reducer should return default`, () => {
     questions,
   });
 
-  expect(reducer({
+  expect(game({
     step: 0,
     mistakes: 0,
   }, {
@@ -126,7 +126,7 @@ test(`Reducer should return default`, () => {
     questions,
   });
 
-  expect(reducer({
+  expect(game({
     step: -1,
     mistakes: 0,
   }, {
