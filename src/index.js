@@ -1,13 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
+import thunk from "redux-thunk";
 import {Provider} from "react-redux";
 import App from "./components/app/app.jsx";
-import {reducer} from "./reducer";
+import {reducer} from "./reducer/reducer.js";
+import {Operation as DataOperation} from "./reducer/data/data.js";
+import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
+import {createApi} from "./api.js";
+
+const api = createApi(() => {});
 
 const store = createStore(
     reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    applyMiddleware(thunk.withExtraArgument(api))
 );
 
 ReactDOM.render(
