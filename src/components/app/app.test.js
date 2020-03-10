@@ -3,6 +3,8 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {App} from "./app.jsx";
+import NameSpace from "../../reducer/name-space";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -45,7 +47,9 @@ const mocks = [
 describe(`Render App`, () => {
   test(`Render WelcomeScreen`, () => {
     const store = mockStore({
-      mistakes: 0,
+      [NameSpace.GAME]: {
+        mistakes: 0,
+      },
     });
 
     const tree = renderer
@@ -58,7 +62,10 @@ describe(`Render App`, () => {
                 onWelcomeButtonClick={()=>{}}
                 resetGame={() => {}}
                 onUserAnswer={()=>{}}
-                step={-1}/>
+                step={-1}
+                authorizationStatus={``}
+                login={() => {}}
+              />
             </Provider>
             , {
               createNodeMock: () => {
@@ -72,7 +79,9 @@ describe(`Render App`, () => {
 
   test(`Render GenreQuestionScreen`, () => {
     const store = mockStore({
-      mistakes: 3,
+      [NameSpace.GAME]: {
+        mistakes: 0,
+      },
     });
 
     const tree = renderer
@@ -85,7 +94,10 @@ describe(`Render App`, () => {
                 onWelcomeButtonClick={()=>{}}
                 resetGame={() => {}}
                 onUserAnswer={()=>{}}
-                step={0}/>
+                step={0}
+                authorizationStatus={``}
+                login={() => {}}
+              />
             </Provider>
             , {
               createNodeMock: () => {
@@ -99,7 +111,9 @@ describe(`Render App`, () => {
 
   test(`Render ArtistQuestionScreen`, () => {
     const store = mockStore({
-      mistakes: 3,
+      [NameSpace.GAME]: {
+        mistakes: 0,
+      },
     });
 
     const tree = renderer
@@ -112,7 +126,10 @@ describe(`Render App`, () => {
                   onWelcomeButtonClick={()=>{}}
                   resetGame={() => {}}
                   onUserAnswer={()=>{}}
-                  step={1}/>
+                  step={1}
+                  authorizationStatus={``}
+                  login={() => {}}
+                />
               </Provider>
               , {
                 createNodeMock: () => {
@@ -126,7 +143,9 @@ describe(`Render App`, () => {
 
   test(`Render GameOverScreen`, () => {
     const store = mockStore({
-      mistakes: 3,
+      [NameSpace.GAME]: {
+        mistakes: 0,
+      },
     });
 
     const tree = renderer
@@ -140,6 +159,8 @@ describe(`Render App`, () => {
                 onWelcomeButtonClick={() => {}}
                 resetGame={() => {}}
                 step={1}
+                authorizationStatus={``}
+                login={() => {}}
               />
             </Provider>, {
               createNodeMock: () => {
@@ -153,7 +174,9 @@ describe(`Render App`, () => {
 
   test(`Render WinScreen`, () => {
     const store = mockStore({
-      mistakes: 3,
+      [NameSpace.GAME]: {
+        mistakes: 0,
+      },
     });
 
     const tree = renderer
@@ -167,6 +190,8 @@ describe(`Render App`, () => {
                 onWelcomeButtonClick={() => {}}
                 resetGame={() => {}}
                 step={3}
+                authorizationStatus={``}
+                login={() => {}}
               />
             </Provider>, {
               createNodeMock: () => {
