@@ -4,7 +4,7 @@ import {createStore, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import {Provider} from "react-redux";
 import App from "./components/app/app.jsx";
-import {reducer} from "./reducer/reducer.js";
+import reducer from "./reducer/reducer.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
 import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 import {createApi} from "./api.js";
