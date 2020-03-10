@@ -63,7 +63,7 @@ describe(`Render App`, () => {
                 resetGame={() => {}}
                 onUserAnswer={()=>{}}
                 step={-1}
-                authorizationStatus={``}
+                authorizationStatus={AuthorizationStatus.NO_AUTH}
                 login={() => {}}
               />
             </Provider>
@@ -95,7 +95,7 @@ describe(`Render App`, () => {
                 resetGame={() => {}}
                 onUserAnswer={()=>{}}
                 step={0}
-                authorizationStatus={``}
+                authorizationStatus={AuthorizationStatus.NO_AUTH}
                 login={() => {}}
               />
             </Provider>
@@ -127,7 +127,7 @@ describe(`Render App`, () => {
                   resetGame={() => {}}
                   onUserAnswer={()=>{}}
                   step={1}
-                  authorizationStatus={``}
+                  authorizationStatus={AuthorizationStatus.NO_AUTH}
                   login={() => {}}
                 />
               </Provider>
@@ -159,7 +159,7 @@ describe(`Render App`, () => {
                 onWelcomeButtonClick={() => {}}
                 resetGame={() => {}}
                 step={1}
-                authorizationStatus={``}
+                authorizationStatus={AuthorizationStatus.NO_AUTH}
                 login={() => {}}
               />
             </Provider>, {
@@ -190,7 +190,7 @@ describe(`Render App`, () => {
                 onWelcomeButtonClick={() => {}}
                 resetGame={() => {}}
                 step={3}
-                authorizationStatus={``}
+                authorizationStatus={AuthorizationStatus.AUTH}
                 login={() => {}}
               />
             </Provider>, {
@@ -200,6 +200,36 @@ describe(`Render App`, () => {
             })
         .toJSON();
 
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render AuthScreen`, () => {
+    const store = mockStore({
+      [NameSpace.GAME]: {
+        mistakes: 3,
+      },
+    });
+
+    const tree = renderer
+        .create(
+            <Provider store={store}>
+              <App
+                maxMistakes={3}
+                mistakes={0}
+                questions={mocks}
+                onUserAnswer={() => {}}
+                onWelcomeButtonClick={() => {}}
+                resetGame={() => {}}
+                step={3}
+                authorizationStatus={AuthorizationStatus.AUTH}
+                login={() => {}}
+              />
+            </Provider>, {
+              createNodeMock: () => {
+                return {};
+              }
+            })
+        .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
