@@ -7,6 +7,7 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 import GameType from "../../const";
 import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 import GameScreen from "../game-screen/game-screen.jsx";
+import AuthScreen from "../auth-screen/auth-screen.jsx";
 import ArtistQuestionScreen
   from "../artist-question-screen/artist-question-screen.jsx";
 import GenreQuestionScreen
@@ -110,6 +111,12 @@ class App extends PureComponent {
             <GenreQuestionScreenWrapped
               question={questions[0]}
               onAnswer={() => {}}
+            />
+          </Route>
+          <Route exact path="/dev-auth">
+            <AuthScreen
+              onSubmit={() => {}}
+              onReplayButtonClick={() => {}}
             />
           </Route>
         </Switch>
