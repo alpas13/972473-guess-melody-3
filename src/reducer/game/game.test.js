@@ -1,77 +1,34 @@
-import {reducer, ActionType, ActionCreator} from "./reducer";
-
-const AVATAR_URL = `https://api.adorable.io/avatars/128`;
-
-const questions = [
-  {
-    type: `genre`,
-    genre: `rock`,
-    answers: [{
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `rock`,
-    }, {
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `blues`,
-    }, {
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `pop`,
-    }, {
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `rap`,
-    }],
-  }, {
-    type: `artist`,
-    song: {
-      artist: `Kurt Cobain`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-    },
-    answers: [{
-      picture: `${AVATAR_URL}/A`,
-      artist: `Kurt Cobain`,
-    }, {
-      picture: `${AVATAR_URL}/AB`,
-      artist: `Adele`,
-    }, {
-      picture: `${AVATAR_URL}/AC`,
-      artist: `Madonna`,
-    }],
-  }
-];
+import {reducer, ActionType, ActionCreator} from "./game";
 
 test(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     mistakes: 0,
     step: -1,
-    maxMistakes: 3,
-    questions
+    maxMistakes: 3
   });
 });
 
 test(`Reducer should increment current step by a given value`, () => {
   expect(reducer({
     mistakes: 0,
-    step: -1,
-    questions
+    step: -1
   }, {
     type: ActionType.INCREMENT_STEP,
     payload: 1
   })).toEqual({
     mistakes: 0,
-    step: 0,
-    questions
+    step: 0
   });
 
   expect(reducer({
     mistakes: 0,
-    step: -1,
-    questions
+    step: -1
   }, {
     type: ActionType.INCREMENT_STEP,
     payload: 0
   })).toEqual({
     mistakes: 0,
-    step: -1,
-    questions
+    step: -1
   });
 });
 
@@ -110,7 +67,6 @@ test(`Reducer should return default`, () => {
     step: 0,
     mistakes: 0,
     maxMistakes: 3,
-    questions,
   });
 
   expect(reducer({
@@ -123,7 +79,6 @@ test(`Reducer should return default`, () => {
     step: 0,
     mistakes: 0,
     maxMistakes: 3,
-    questions,
   });
 
   expect(reducer({
@@ -136,7 +91,6 @@ test(`Reducer should return default`, () => {
     step: 0,
     mistakes: 0,
     maxMistakes: 3,
-    questions,
   });
 });
 
