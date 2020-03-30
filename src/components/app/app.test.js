@@ -3,12 +3,12 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {App} from "./app.jsx";
-import NameSpace from "../../reducer/name-space";
+import NameSpace from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
-const mocks = [
+const questions = [
   {
     type: `genre`,
     genre: `rock`,
@@ -32,23 +32,26 @@ const mocks = [
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
     },
     answers: [{
-      picture: `https://api.adorable.io/avatars/128`,
-      artist: `John Jameson`,
+      picture: `https://api.adorable.io/avatars/128/1`,
+      artist: `John Snow`,
     }, {
-      picture: `https://api.adorable.io/avatars/128`,
+      picture: `https://api.adorable.io/avatars/128/2`,
       artist: `Jack Daniels`,
     }, {
-      picture: `https://api.adorable.io/avatars/128`,
+      picture: `https://api.adorable.io/avatars/128/3`,
       artist: `Jim Beam`,
     }],
-  }
+  },
 ];
 
 describe(`Render App`, () => {
-  test(`Render WelcomeScreen`, () => {
+  it(`Render WelcomeScreen`, () => {
     const store = mockStore({
       [NameSpace.GAME]: {
         mistakes: 0,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
       },
     });
 
@@ -56,173 +59,160 @@ describe(`Render App`, () => {
         .create(
             <Provider store={store}>
               <App
+                authorizationStatus={AuthorizationStatus.NO_AUTH}
+                login={() => {}}
                 maxMistakes={3}
                 mistakes={0}
-                questions={mocks}
-                onWelcomeButtonClick={()=>{}}
+                questions={questions}
+                onUserAnswer={() => {}}
+                onWelcomeButtonClick={() => {}}
                 resetGame={() => {}}
-                onUserAnswer={()=>{}}
                 step={-1}
-                authorizationStatus={AuthorizationStatus.NO_AUTH}
-                login={() => {}}
               />
             </Provider>
-            , {
-              createNodeMock: () => {
-                return {};
-              }
-            })
+        )
         .toJSON();
-
     expect(tree).toMatchSnapshot();
   });
-
-  test(`Render GenreQuestionScreen`, () => {
-    const store = mockStore({
-      [NameSpace.GAME]: {
-        mistakes: 0,
-      },
-    });
-
-    const tree = renderer
-        .create(
-            <Provider store={store}>
-              <App
-                maxMistakes={3}
-                mistakes={0}
-                questions={mocks}
-                onWelcomeButtonClick={()=>{}}
-                resetGame={() => {}}
-                onUserAnswer={()=>{}}
-                step={0}
-                authorizationStatus={AuthorizationStatus.NO_AUTH}
-                login={() => {}}
-              />
-            </Provider>
-            , {
-              createNodeMock: () => {
-                return {};
-              }
-            })
-        .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  test(`Render ArtistQuestionScreen`, () => {
-    const store = mockStore({
-      [NameSpace.GAME]: {
-        mistakes: 0,
-      },
-    });
-
-    const tree = renderer
-          .create(
-              <Provider store={store}>
-                <App
-                  maxMistakes={3}
-                  mistakes={0}
-                  questions={mocks}
-                  onWelcomeButtonClick={()=>{}}
-                  resetGame={() => {}}
-                  onUserAnswer={()=>{}}
-                  step={1}
-                  authorizationStatus={AuthorizationStatus.NO_AUTH}
-                  login={() => {}}
-                />
-              </Provider>
-              , {
-                createNodeMock: () => {
-                  return {};
-                }
-              })
-        .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  test(`Render GameOverScreen`, () => {
-    const store = mockStore({
-      [NameSpace.GAME]: {
-        mistakes: 0,
-      },
-    });
-
-    const tree = renderer
-        .create(
-            <Provider store={store}>
-              <App
-                maxMistakes={3}
-                mistakes={3}
-                questions={mocks}
-                onUserAnswer={() => {}}
-                onWelcomeButtonClick={() => {}}
-                resetGame={() => {}}
-                step={1}
-                authorizationStatus={AuthorizationStatus.NO_AUTH}
-                login={() => {}}
-              />
-            </Provider>, {
-              createNodeMock: () => {
-                return {};
-              }
-            })
-        .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  test(`Render WinScreen`, () => {
-    const store = mockStore({
-      [NameSpace.GAME]: {
-        mistakes: 0,
-      },
-    });
-
-    const tree = renderer
-        .create(
-            <Provider store={store}>
-              <App
-                maxMistakes={3}
-                mistakes={0}
-                questions={mocks}
-                onUserAnswer={() => {}}
-                onWelcomeButtonClick={() => {}}
-                resetGame={() => {}}
-                step={3}
-                authorizationStatus={AuthorizationStatus.AUTH}
-                login={() => {}}
-              />
-            </Provider>, {
-              createNodeMock: () => {
-                return {};
-              }
-            })
-        .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`Render AuthScreen`, () => {
+  it(`Render GenreQuestionScreen`, () => {
     const store = mockStore({
       [NameSpace.GAME]: {
         mistakes: 3,
       },
     });
+    const tree = renderer
+        .create(
+            <Provider store={store}>
+              <App
+                authorizationStatus={AuthorizationStatus.NO_AUTH}
+                login={() => {}}
+                maxMistakes={3}
+                mistakes={0}
+                questions={questions}
+                onUserAnswer={() => {}}
+                onWelcomeButtonClick={() => {}}
+                resetGame={() => {}}
+                step={0}
+              />
+            </Provider>, {
+              createNodeMock: () => {
+                return {};
+              }
+            })
+        .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  it(`Render ArtistQuestionScreen`, () => {
+    const store = mockStore({
+      [NameSpace.GAME]: {
+        mistakes: 3,
+      },
+    });
+    const tree = renderer
+        .create(
+            <Provider store={store}>
+              <App
+                authorizationStatus={AuthorizationStatus.NO_AUTH}
+                login={() => {}}
+                maxMistakes={3}
+                mistakes={0}
+                questions={questions}
+                onUserAnswer={() => {}}
+                onWelcomeButtonClick={() => {}}
+                resetGame={() => {}}
+                step={1}
+              />
+            </Provider>, {
+              createNodeMock: () => {
+                return {};
+              }
+            })
+        .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  it(`Render GameOverScreen`, () => {
+    const store = mockStore({
+      [NameSpace.GAME]: {
+        mistakes: 3,
+      },
+    });
+    const tree = renderer
+        .create(
+            <Provider store={store}>
+              <App
+                authorizationStatus={AuthorizationStatus.NO_AUTH}
+                login={() => {}}
+                maxMistakes={3}
+                mistakes={3}
+                questions={questions}
+                onUserAnswer={() => {}}
+                onWelcomeButtonClick={() => {}}
+                resetGame={() => {}}
+                step={1}
+              />
+            </Provider>, {
+              createNodeMock: () => {
+                return {};
+              }
+            })
+        .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  it(`Render WinScreen`, () => {
+    const store = mockStore({
+      [NameSpace.GAME]: {
+        mistakes: 5,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      },
+    });
 
     const tree = renderer
         .create(
             <Provider store={store}>
               <App
+                authorizationStatus={AuthorizationStatus.AUTH}
+                login={() => {}}
                 maxMistakes={3}
                 mistakes={0}
-                questions={mocks}
+                questions={questions}
                 onUserAnswer={() => {}}
                 onWelcomeButtonClick={() => {}}
                 resetGame={() => {}}
                 step={3}
-                authorizationStatus={AuthorizationStatus.AUTH}
+              />
+            </Provider>, {
+              createNodeMock: () => {
+                return {};
+              }
+            })
+        .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  it(`Render AuthScreen`, () => {
+    const store = mockStore({
+      [NameSpace.GAME]: {
+        mistakes: 3,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+      },
+    });
+
+    const tree = renderer
+        .create(
+            <Provider store={store}>
+              <App
+                authorizationStatus={AuthorizationStatus.NO_AUTH}
                 login={() => {}}
+                maxMistakes={3}
+                mistakes={0}
+                questions={questions}
+                onUserAnswer={() => {}}
+                onWelcomeButtonClick={() => {}}
+                resetGame={() => {}}
+                step={3}
               />
             </Provider>, {
               createNodeMock: () => {
