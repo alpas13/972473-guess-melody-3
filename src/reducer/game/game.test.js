@@ -94,6 +94,44 @@ test(`Reducer should return default`, () => {
   });
 });
 
+test(`Reducer should return step -1`, () => {
+  expect(reducer({
+    step: 5,
+    mistakes: 1,
+  }, {
+    type: ActionType.GO_TO_WELCOME,
+    payload: null,
+  })).toEqual({
+    step: -1,
+    mistakes: 0,
+    maxMistakes: 3,
+  });
+
+  expect(reducer({
+    step: 0,
+    mistakes: 0,
+  }, {
+    type: ActionType.GO_TO_WELCOME,
+    payload: null,
+  })).toEqual({
+    step: -1,
+    mistakes: 0,
+    maxMistakes: 3,
+  });
+
+  expect(reducer({
+    step: -1,
+    mistakes: 0,
+  }, {
+    type: ActionType.GO_TO_WELCOME,
+    payload: null,
+  })).toEqual({
+    step: -1,
+    mistakes: 0,
+    maxMistakes: 3,
+  });
+});
+
 describe(`ActionCreator work correctly`, () => {
   test(`ActionCreator for incrementing step returns correct action`, () => {
     expect(ActionCreator.incrementStep()).toEqual({
@@ -222,6 +260,14 @@ describe(`ActionCreator work correctly`, () => {
     expect(ActionCreator.resetGame())
         .toEqual({
           type: ActionType.RESET,
+          payload: null,
+        });
+  });
+
+  test(`Action creator for go to welcome returns action with null payload`, () => {
+    expect(ActionCreator.goToWelcome())
+        .toEqual({
+          type: ActionType.GO_TO_WELCOME,
           payload: null,
         });
   });
