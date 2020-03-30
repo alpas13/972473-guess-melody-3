@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Correctly render GameScreen component with type - artist 1`] = `
+exports[`GameScreen component render correctly Correctly render GameScreen component with type - artist 1`] = `
 <section
   className="game game--artist"
 >
@@ -9,7 +9,8 @@ exports[`Correctly render GameScreen component with type - artist 1`] = `
   >
     <a
       className="game__back"
-      href="#"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="visually-hidden"
@@ -61,7 +62,7 @@ exports[`Correctly render GameScreen component with type - artist 1`] = `
 </section>
 `;
 
-exports[`Correctly render GameScreen component with type - genre 1`] = `
+exports[`GameScreen component render correctly Correctly render GameScreen component with type - genre 1`] = `
 <section
   className="game game--genre"
 >
@@ -70,7 +71,8 @@ exports[`Correctly render GameScreen component with type - genre 1`] = `
   >
     <a
       className="game__back"
-      href="#"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="visually-hidden"
