@@ -30,7 +30,7 @@ class GenreQuestionScreen extends PureComponent {
           {answers.map((answer, i) => {
             return (
               <GenreQuestionItem
-                key={`${i}-${answer.src}`}
+                key={`${Date.now() + Math.random()}`}
                 answer={answer}
                 id={i}
                 onChange={onChange}
